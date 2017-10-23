@@ -1,23 +1,11 @@
 package com.gonzaleznestorweb.model;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Range;
 
-public class Exercise {
+public class Goal {
+	
 	@Range(min=1, max=120)
 	private int minutes;
-	
-	@NotNull
-	private String activity;
-	
-	public String getActivity() {
-		return activity;
-	}
-
-	public void setActivity(String activity) {
-		this.activity = activity;
-	}
 
 	public int getMinutes() {
 		return minutes;
