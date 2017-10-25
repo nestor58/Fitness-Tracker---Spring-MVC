@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="style.css" />
 <title>Add Minutes Page</title>
 <script type="text/javascript" src="jquery-3.2.1.js"></script>
 <script type="text/javascript">
@@ -28,13 +29,22 @@
 				
 			});
 		
+		function myFunction() {
+		    if (${goal.minutes} < ${exercise.totalMinutes})
+		    	document.getElementById("demo").innerHTML = "<h2 style='background-color:DodgerBlue;'><spring:message code='GoodYouHaveReachTheTarget'/></h2>";
+		    	else if (${exercise.totalMinutes} > 0)
+		    		document.getElementById("demo").innerHTML = "<h2><spring:message code='AddMoreMinutesUntil'/></h2>";
+		}
+				
 	</script>
+	
+	
 </head>
-<body>
+<body onload="myFunction()">
 <h1>Add minutes exercised</h1>
-
-Language : <a href="?language=en">English</a> | <a href="?language=es">Spanish</a>
-
+<br/><br/>
+Language : <a href="?language=en">English</a> | <a href="?language=es">Spanish</a> | <a href="?language=fr">French</a>
+<br/><br/>
 <form:form modelAttribute="exercise">
 	<table>
 		<tr>
@@ -48,9 +58,12 @@ Language : <a href="?language=en">English</a> | <a href="?language=es">Spanish</
 			<td colspan="3">
 				<input type="submit" value="Enter Exercise"/>
 			</td>
-		</tr>
+		</tr>		
 	</table>
 </form:form>
-<h1>Our goal for today is .. ${goal.minutes}</h1>
+<h3><spring:message code="OurGoalForThisWeekIs"/>${goal.minutes}</h3>
+<h3><spring:message code="ActivitiesForToday"/><br/>  ${exercise.list}</h3>
+<h3><spring:message code="TheTotalForTodayIs"/> ${exercise.totalMinutes}</h3>
+<p id="demo"></p>
 </body>
 </html>
